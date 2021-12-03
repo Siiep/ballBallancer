@@ -24,7 +24,7 @@ while(True):
         cv2.imshow('pic',flipped)       # function that captures the current pixel -
                                         # - displays it on the video feed window
         cv2.setMouseCallback('pic',PIX) # Updates the pixel chosen on the windows
-    elif cv2.waitKey(1) & 0xFF == ord(' '): #hit space to quit
+    elif cv2.waitKey(1) & 0xFF == ord(' '): # hit space to quit
         break
 cap.release()
 cv2.destroyAllWindows()
