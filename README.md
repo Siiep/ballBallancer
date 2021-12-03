@@ -1,7 +1,7 @@
-# ballBallancer
+# Ball Ballancer
 
-This is the repository for the Illini VEX Robotics 2021 Ball Balencing project. All code used in this procect is open sourced as well 
-as self written. See references for the sources to the programs that are not our own original design.  
+This is the repository for the Illini VEX Robotics 2021 Ball Balancing project. All code used in this project is open sourced as well 
+as self-written. See references for the sources to the programs that are not our own original design. 
 
 # starting_code
 Each file in this folder is a file from another source. The files will be used to create longer and more comprehensive code in the output_code folder.
