@@ -1,5 +1,6 @@
 #import the necessary packages
 from collections import deque
+from imutils.video import VideoStream
 import numpy as np
 import argparse
 import cv2
@@ -22,7 +23,7 @@ pts = deque(maxlen=args["buffer"])
 # if a video path was not supplied, grab the reference
 # to the webcam
 if not args.get("video", False):
-	vs = cv2.VideCapture(0)
+	vs = VideoStream(src=0).start()
 # otherwise, grab a reference to the video file
 else:
 	vs = cv2.VideoCapture(args["video"])
