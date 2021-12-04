@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from PIL import Image
+
 def PIX(event, x, y, flags, param):         # This function is used to open the pixel window and display values
     if event == cv2.EVENT_LBUTTONDBLCLK:
         r,g,b = rgbimg.getpixel((x,y))
@@ -19,8 +19,10 @@ while(True):
     cv2.imshow('vid',flipped)
     if cv2.waitKey(1) & 0xFF == ord('c'): # Press C to enter the code block 
         cv2.imwrite('1.png',flipped)    # Creates a snapshot of the video
-        imge = Image.open('1.png')      # Opens the snapshot in a seperate window
+        
+        imge = cv2.imread('1.png', cv2.IMREAD_UNCHANGED)      # Opens the snapshot in a seperate window
         rgbimg = imge.convert('RGB')    # Converts Pixel Data to the RGB standard
+
         cv2.imshow('pic',flipped)       # function that captures the current pixel -
                                         # - displays it on the video feed window
         cv2.setMouseCallback('pic',PIX) # Updates the pixel chosen on the windows
