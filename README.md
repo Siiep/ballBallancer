@@ -1,12 +1,16 @@
+# Folder Structure Help
+"user_code" holds any code you'd like to commit to the github.
+"reference_cde" holds any code taken from the internet.
+
+For the project files, we will try use the standard folder structure for Github
+https://soulaimanghanem.medium.com/github-repository-structure-best-practices-248e6effc405
+
+TL;DR
+"test" folder contains unit tests.
+"src" folder is source code for the project. We might need a "dep" folder in the future.
+
 # Ball Ballancer
 
-This is the repository for the Illini VEX Robotics 2021 Ball Balancing project. All code used in this project is open sourced as well 
-as self-written. See references for the sources to the programs that are not our own original design. 
-
-# starting_code
-Each file in this folder is a file from another source. The files will be used to create longer and more comprehensive code in the output_code folder.
-
-# output_code
-Each file in this folder is an entry from a collaborator that stitches together code from the starting_code folder. The files can be for any use to the project.
+This is the repository for the Illini VEX Robotics 2021 Ball Balancing project. All code used in this project is open sourced.
 
 # References
