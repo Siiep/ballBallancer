@@ -1,5 +1,8 @@
 # Folder Structure Help
-For the project, we will try use the standard folder structure for Github 
+"user_code" holds any code you'd like to commit to the github
+"reference_cde" holds any code taken from the internet
+
+For the project files, we will try use the standard folder structure for Github 
 https://soulaimanghanem.medium.com/github-repository-structure-best-practices-248e6effc405
 
 TL;DR
