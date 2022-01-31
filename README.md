@@ -7,7 +7,7 @@ https://soulaimanghanem.medium.com/github-repository-structure-best-practices-24
 
 TL;DR
 "test" folder contains unit tests.
-"src" folder is official code for the project. We might need a "dep" folder in the future.
+"src" folder is source code for the project. We might need a "dep" folder in the future.
 
 # Ball Ballancer
 
