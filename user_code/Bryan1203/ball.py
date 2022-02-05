@@ -20,6 +20,10 @@ args = vars(ap.parse_args())
 greenLower = (0,21,184)
 greenUpper = (28, 189, 248)
 pts = deque(maxlen=args["buffer"])
+
+# define previous x and y
+prevX = 0.0
+prevY = 0.0
 # if a video path was not supplied, grab the reference
 # to the webcam
 if not args.get("video", False):
@@ -65,6 +69,7 @@ while True:
 		# centroid
 		c = max(cnts, key=cv2.contourArea)
 		((x, y), radius) = cv2.minEnclosingCircle(c)
+
 		M = cv2.moments(c)
 		center = (int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"]))
 		# only proceed if the radius meets a minimum size
@@ -74,7 +79,14 @@ while True:
 			cv2.circle(frame, (int(x), int(y)), int(radius),
 				(0, 255, 255), 2)
 			cv2.circle(frame, center, 5, (0, 0, 255), -1)
-			cv2.putText(frame,("x :"+ str(int(x)) + "y :" + str(int(y))),(10,50),cv2.FONT_HERSHEY_SCRIPT_SIMPLEX,1,(0,255,255),2)
+			# position of the ball in x, y
+			cv2.putText(frame,("x :"+ str(int(x)) + "y :" + str(int(y))),(10,50),cv2.FONT_ITALIC,1,(0,255,255),2)
+			# velocity of the ball
+			cv2.putText(frame, ("dx/dt :" + str(int((x-prevX)/0.9)) + " dy/dt :" + str(int((y-prevY)/0.9))), (10, 100), cv2.FONT_ITALIC,
+						1, (0, 255, 255), 2)
+			prevX = x
+			prevY = y
+			time.sleep(0.05)
 	# update the points queue
 	pts.appendleft(center)
 
