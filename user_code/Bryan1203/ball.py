@@ -8,6 +8,7 @@ import imutils
 import time
 import math
 from gpiozero import Servo
+from gpiozero.pins.pigpio import PiGPIOFactory
 
 
 # construct the argument parse and parse the arguments
@@ -28,6 +29,9 @@ pts = deque(maxlen=args["buffer"])
 # define previous x and y
 prevX = 0.0
 prevY = 0.0
+#define the servo
+factory = PiGPIOFactory()
+servo = Servo(12, min_pulse_width=0.5/1000, max_pulse_width=2.5/1000, pin_factory=factory)
 # if a video path was not supplied, grab the reference
 # to the webcam
 if not args.get("video", False):
@@ -96,7 +100,7 @@ while True:
 			prevY = y
 			cv2.putText(frame,str(pid_control/150), (10, 300), cv2.FONT_ITALIC,1, (0, 255, 255), 2)
 			# move the motor
-			Servo.value = pid_control/150
+			servo.value = pid_control/150
 			time.sleep(0.05)
 	# update the points queue
 	pts.appendleft(center)
