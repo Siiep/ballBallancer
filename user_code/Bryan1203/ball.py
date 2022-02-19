@@ -6,6 +6,10 @@ import argparse
 import cv2
 import imutils
 import time
+import math
+from gpiozero import Servo
+
+
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-v", "--video",
@@ -17,8 +21,8 @@ args = vars(ap.parse_args())
 # define the lower and upper boundaries of the "green"
 # ball in the HSV color space, then initialize the
 # list of tracked points
-greenLower = (0,21,184)
-greenUpper = (28, 189, 248)
+greenLower = (0,165,11)
+greenUpper = (66, 255, 248)
 pts = deque(maxlen=args["buffer"])
 
 # define previous x and y
@@ -82,10 +86,17 @@ while True:
 			# position of the ball in x, y
 			cv2.putText(frame,("x :"+ str(int(x)) + "y :" + str(int(y))),(10,50),cv2.FONT_ITALIC,1,(0,255,255),2)
 			# velocity of the ball
-			cv2.putText(frame, ("dx/dt :" + str(int((x-prevX)/0.9)) + " dy/dt :" + str(int((y-prevY)/0.9))), (10, 100), cv2.FONT_ITALIC,
-						1, (0, 255, 255), 2)
+			cv2.putText(frame, ("dx/dt :" + str(int((x-prevX)/0.9)) + " dy/dt :" + str(int((y-prevY)/0.9))), (10, 100), cv2.FONT_ITALIC, 1, (0, 255, 255), 2)
+			de_dt = ((x - prevX) / 0.9)
+			error = x-300
+			kp = 0.5
+			pid_control = kp*error + kp*de_dt
+			#u(t) = Kp*e(t) + Kp*de/dt
 			prevX = x
 			prevY = y
+			cv2.putText(frame,str(pid_control/150), (10, 300), cv2.FONT_ITALIC,1, (0, 255, 255), 2)
+			# move the motor
+			Servo.value = pid_control/150
 			time.sleep(0.05)
 	# update the points queue
 	pts.appendleft(center)
