@@ -42,6 +42,9 @@ else:
 # allow the camera or video file to warm up
 time.sleep(2.0)
 
+def clamp(num, min_value, max_value):
+   return max(min(num, max_value), min_value)
+
 # keep looping
 while True:
 	# grab the current frame
@@ -100,7 +103,7 @@ while True:
 			prevY = y
 			cv2.putText(frame,str(pid_control/150), (10, 300), cv2.FONT_ITALIC,1, (0, 255, 255), 2)
 			# move the motor
-			servo.value = pid_control/150
+			servo.value = clamp(pid_control/150, -1, 1)
 			time.sleep(0.05)
 	# update the points queue
 	pts.appendleft(center)
